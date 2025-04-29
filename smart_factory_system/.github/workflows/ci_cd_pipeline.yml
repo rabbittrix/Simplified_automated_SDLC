@@ -1,4 +1,5 @@
 name: CI Pipeline
+
 on:
   push:
     branches: [ "main" ]
@@ -25,7 +26,4 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run tests
-        run: pytest test_app.py
-
-      - name: Generate coverage report
-        run: pytest --cov=app --cov-report=term-missing test_app.py
+        run: pytest --cov=. --cov-report=term-missing test_app.py
