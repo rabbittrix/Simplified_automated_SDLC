@@ -1,29 +1,44 @@
 name: Python_test CI
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    inputs:
+      environment:
+        description: 'Select the environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+          - development 
+          - testing
 
-    steps:
-    - uses: actions/checkout@v3
+      version:
+        description: 'Version of the application to deploy'
+        default: '1.0.0'
+        type: string
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+      notify_email:
+        description: 'Email address to send notification to'
+        required: false
+        default: 'rabbittrix@hotmail.com'
+        type: string
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run tests
-      run: |
-        pytest
-
+      notify_slack:
+        description: 'Slack channel to send notification to'
+        required: false
+        default: 'Roberto de Souza'
+        type: string
