@@ -7,6 +7,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: run tests
+        run: |
+          echo "Running tests..."
+          pytest
+          echo "Tests completed."
+
 on:
   push:
     branches: [ "main" ]
@@ -42,4 +48,3 @@ on:
         required: false
         default: 'Roberto de Souza'
         type: string
-
