@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 import networkx as nx
-from pyvis.network import Network
+from pyvis import Network
 
 def get_mock_erp_data():
     return {"Production Order": f"PO-{random.randint(1000, 9999)}", "Status": random.choice(["Running", "Completed"])}
