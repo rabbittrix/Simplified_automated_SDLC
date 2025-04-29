@@ -1,5 +1,5 @@
 import pytest
-from app import get_mock_erp_data, get_mock_mes_data, get_mock_plm_data
+from app import *
 
 def test_get_mock_erp_data():
     data = get_mock_erp_data()

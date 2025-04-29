@@ -25,6 +25,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov flake8
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV                
+
       - name: Run tests
         run: pytest --cov=. --cov-report=term-missing test_app.py
 
