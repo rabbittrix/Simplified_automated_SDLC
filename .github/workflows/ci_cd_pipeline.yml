@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.13"
 
       - name: Install dependencies explicitly
         run: |
@@ -40,7 +40,7 @@ jobs:
         run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV
 
       - name: Run tests
-        working-directory: smart_factory_system  # Altera o diretório de trabalho para smart_factory_system
+        working-directory: smart_factory_system
         run: pytest --cov=. --cov-report=term-missing
 
       - name: Lint code with flake8
