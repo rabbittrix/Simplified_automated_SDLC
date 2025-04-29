@@ -34,7 +34,8 @@ jobs:
         run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV
 
       - name: Run tests
-        run: pytest --cov=. --cov-report=term-missing smart_factory_system/test_app.py
+        working-directory: smart_factory_system  # Altera o diretório de trabalho para smart_factory_system
+        run: pytest --cov=. --cov-report=term-missing test_app.py
 
       - name: Lint code with flake8
         run: flake8 .
