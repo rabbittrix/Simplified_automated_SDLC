@@ -1,47 +1,45 @@
 name: CI Pipeline
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    inputs:
+      environment:
+        description: 'Select the environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+          - development 
+          - testing
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      version:
+        description: 'Version of the application to deploy'
+        default: '1.0.0'
+        type: string
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
+      notify_email:
+        description: 'Email address to send notification to'
+        required: false
+        default: 'rabbittrix@hotmail.com'
+        type: string
 
-      - name: Install dependencies explicitly
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyvis==0.3.2 networkx==3.2.1
+      notify_slack:
+        description: 'Slack channel to send notification to'
+        required: false
+        default: 'Roberto de Souza'
+        type: string
 
-      - name: Install remaining dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: List directory contents (diagnostic)
-        run: |
-          echo "Listing the files in the current directory:"
-          ls -R  # Lista recursivamente o conteúdo do diretório
-
-      - name: Move pytest.ini to root
-        run: mv pytest.ini smart_factory_system/pytest.ini
-
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV
-
-      - name: Run tests
-        working-directory: smart_factory_system
-        run: pytest --cov=. --cov-report=term-missing
-
-      - name: Lint code with flake8
-        run: flake8 .
