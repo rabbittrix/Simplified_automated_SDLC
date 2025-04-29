@@ -28,6 +28,9 @@ jobs:
     - name: Code Quality Check (Flake8)
       run: flake8 src/
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
+
     - name: Run Unit Tests
       run: pytest
 
