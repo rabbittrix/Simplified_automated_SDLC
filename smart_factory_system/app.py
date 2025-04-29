@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 import random
 import networkx as nx
 from pyvis.network import Network
@@ -26,26 +25,31 @@ def show_system_graph():
         html = f.read()
     return html
 
-st.set_page_config(page_title="Industrial Integration Dashboard", layout="wide")
-st.title("🏭 Industrial Integration Dashboard (ERP + MES + PLM)")
+# Função principal do Streamlit
+def main():
+    st.set_page_config(page_title="Industrial Integration Dashboard", layout="wide")
+    st.title("🏭 Industrial Integration Dashboard (ERP + MES + PLM)")
 
-col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-with col1:
-    st.subheader("📦 ERP System")
-    erp_data = get_mock_erp_data()
-    st.json(erp_data)
+    with col1:
+        st.subheader("📦 ERP System")
+        erp_data = get_mock_erp_data()
+        st.json(erp_data)
 
-with col2:
-    st.subheader("⚙️ MES System")
-    mes_data = get_mock_mes_data()
-    st.json(mes_data)
+    with col2:
+        st.subheader("⚙️ MES System")
+        mes_data = get_mock_mes_data()
+        st.json(mes_data)
 
-st.subheader("🧩 PLM System")
-plm_data = get_mock_plm_data()
-st.json(plm_data)
+    st.subheader("🧩 PLM System")
+    plm_data = get_mock_plm_data()
+    st.json(plm_data)
 
-st.subheader("🔗 Systems Integration Map")
-st.components.v1.html(show_system_graph(), height=350)
+    st.subheader("🔗 Systems Integration Map")
+    st.components.v1.html(show_system_graph(), height=350)
 
-st.success("Dashboard atualizado com sucesso! (Mock Real-Time)")
+    st.success("Dashboard atualizado com sucesso! (Mock Real-Time)")
+
+if __name__ == "__main__":
+    main()
