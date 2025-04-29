@@ -26,10 +26,10 @@ jobs:
           pip install pytest pytest-cov flake8
 
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+        run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV  # Ajuste o PYTHONPATH
 
       - name: Run tests
-        run: pytest --cov=. --cov-report=term-missing smart_factory_system/test_app.py
+        run: pytest --cov=. --cov-report=term-missing smart_factory_system/test_app.py  # Caminho correto para o arquivo de teste
 
       - name: Lint code with flake8
         run: flake8 .
