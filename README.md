@@ -32,16 +32,16 @@ Create a project that represents in a practical and beautiful way:
 📦 Final Project Structure (Example)
 
     smart_factory_system/
-    ├── .github/
+    ├── .github/ - need just one
     │   └── workflows/
-    │       └── ci_cd_pipeline.yml
+    │       └── ci_cd_pipeline.yml - ci.yml
     ├── docs/
     │   └── SDLC.md
     │   └── QA_Strategy.md
-    ├── src/
-    │   └── app.py
-    ├── tests/
-    │   └── test_app.py
+    ├── app.py
+    │   
+    ├── test_app.py
+    │   
     ├── requirements.txt
     ├── pytest.ini
     ├── README.md
