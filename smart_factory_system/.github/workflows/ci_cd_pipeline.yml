@@ -29,10 +29,8 @@ jobs:
       run: flake8 src/
 
     - name: Set PYTHONPATH
-      run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
-
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
     - name: Run Unit Tests
       run: pytest tests/
-
     - name: Test Coverage Report
       run: pytest --cov=src --cov-report=term-missing
