@@ -1,4 +1,3 @@
-import pytest
 from app import *
 
 def test_get_mock_erp_data():

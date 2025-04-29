@@ -30,12 +30,15 @@ jobs:
           echo "Listing the files in the current directory:"
           ls -R  # Lista recursivamente o conteúdo do diretório
 
+      - name: Move pytest.ini to root
+        run: mv pytest.ini smart_factory_system/pytest.ini
+
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV
 
       - name: Run tests
         working-directory: smart_factory_system  # Altera o diretório de trabalho para smart_factory_system
-        run: pytest --cov=. --cov-report=term-missing test_app.py
+        run: pytest --cov=. --cov-report=term-missing
 
       - name: Lint code with flake8
         run: flake8 .
