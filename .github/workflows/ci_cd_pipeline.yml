@@ -25,11 +25,16 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov flake8
 
+      - name: List directory contents (diagnostic)
+        run: |
+          echo "Listing the files in the current directory:"
+          ls -R  # Lista recursivamente o conteúdo do diretório
+
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV  # Ajuste o PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)/smart_factory_system" >> $GITHUB_ENV
 
       - name: Run tests
-        run: pytest --cov=. --cov-report=term-missing smart_factory_system/test_app.py  # Caminho correto para o arquivo de teste
+        run: pytest --cov=. --cov-report=term-missing smart_factory_system/test_app.py
 
       - name: Lint code with flake8
         run: flake8 .
